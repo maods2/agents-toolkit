@@ -12,10 +12,12 @@ When solving a task:
 Repository structure:
 
 ```text
+agents/
 principles/
 skills/
 playbooks/
 templates/
+knowledge/
 discoveries/
 workspaces/
 ```

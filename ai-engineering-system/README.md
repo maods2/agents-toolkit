@@ -9,10 +9,12 @@ This project stores reusable guidance for agentic development workflows. It is d
 ```text
 .ai/
 ├── AGENTS.md
+├── agents/
 ├── principles/
 ├── skills/
 ├── playbooks/
 ├── templates/
+├── knowledge/
 ├── discoveries/
 └── workspaces/
 ```
@@ -21,11 +23,12 @@ This project stores reusable guidance for agentic development workflows. It is d
 
 1. Start with a playbook that matches the task.
 2. Load only the principles and skills referenced by that playbook.
-3. Persist discoveries, assumptions, and open questions before implementation.
+3. Persist discoveries, assumptions, open questions, and durable knowledge before implementation.
 4. Keep task workspaces small, explicit, and disposable.
 5. Improve the system incrementally after real project usage.
 
 ## Design goals
+
 
 - Keep context concise and task-relevant.
 - Prefer simple, portable Markdown artifacts.
