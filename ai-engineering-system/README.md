@@ -176,17 +176,31 @@ Workspaces answer questions such as:
 
 ### Agents
 
-**Agents are reusable roles with responsibilities.**
+**Agents are reusable workflow-stage roles with responsibilities.**
 
-Agent role definitions describe how a specialized agent should behave. For example, the Knowledge Curator is responsible for comparing implementation changes against existing knowledge and updating only the artifacts that are affected.
+Agent role definitions describe how a specialized workflow stage should behave. They are intentionally not role-playing personas such as Senior Engineer, Staff Engineer, Python Developer, MLOps Engineer, or Architect. Each agent owns a repeatable engineering activity and produces a reviewable Markdown artifact.
+
+Core workflow agents:
+
+- `workflow-scout`: rapidly locates entrypoints, services, repositories, APIs, events, tests, and workflows; outputs `navigation-map.md`.
+- `workflow-discovery`: deeply documents workflow behavior, architecture, business rules, assumptions, and open questions under `.ai/discoveries/<workflow-name>/`.
+- `impact-analysis`: identifies affected files, tests, services, dependencies, integration points, and risks; outputs `impact-analysis.md`.
+- `planner`: turns requirements and evidence into an executable `plan.md`; it must never implement code.
+- `reviewer`: validates architecture, SOLID design, complexity, coupling, tests, and knowledge drift; outputs `review-report.md`.
+- `knowledge-curator`: keeps discoveries, global knowledge, and ADRs synchronized with implementation changes.
 
 Agents answer questions such as:
 
-- Who reviews whether documentation is stale?
-- Who checks whether an ADR is needed?
-- Who keeps discoveries and knowledge synchronized with code changes?
+- Where does this workflow live?
+- What behavior and business rules already exist?
+- What will this change affect?
+- What is the implementation and validation plan?
+- Is the implementation ready to complete?
+- What knowledge must be updated for future tasks?
 
 ## Recommended Agent Workflow
+
+Use `.ai/agent-orchestration.md` as the source of truth for agent selection rules and flow variants. The orchestration model keeps the system workflow-centric, Markdown-based, vendor-neutral, and suitable for large codebases.
 
 Use this workflow when applying the system to a real software engineering task.
 
@@ -213,6 +227,12 @@ Knowledge Curator
 ↓
 Updated Knowledge
 ```
+
+Common flow variants are documented in `.ai/agent-orchestration.md`:
+
+- New Feature Flow: Scout → Discovery → Impact Analysis → Planner → Playbook Selection → Skill Loading → Implementation → Reviewer → Knowledge Curator.
+- Bug Fix Flow: Scout → Impact Analysis → Planner → Bug Fix Playbook → Implementation → Reviewer → Knowledge Curator.
+- Refactor Flow: Discovery → Impact Analysis → Refactor Playbook → Implementation → Reviewer → Knowledge Curator → ADR Generation when needed.
 
 ### 1. User Request
 
