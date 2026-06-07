@@ -29,6 +29,7 @@ This project stores reusable guidance for agentic development workflows. It is d
 
 ## Design goals
 
+
 - Keep context concise and task-relevant.
 - Prefer simple, portable Markdown artifacts.
 - Avoid vendor-specific assumptions unless a project explicitly opts in.
